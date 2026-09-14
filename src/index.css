@@ -188,3 +188,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #D2FF00;
 }
+
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
