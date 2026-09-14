@@ -194,3 +194,11 @@ body {
     cursor: none !important;
   }
 }
+
+/* ЗАПРЕЩАЕМ СИСТЕМНЫЙ DRAG КАРТИНОК И ССЫЛОК */
+img, a {
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
