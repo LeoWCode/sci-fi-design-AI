@@ -8,6 +8,7 @@ import DecayAndScorecard from './components/DecayAndScorecard';
 import ExecutionAndTelemetry from './components/ExecutionAndTelemetry';
 import SubscribeSection from './components/SubscribeSection';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 
 import HexInspectorModal from './components/HexInspectorModal';
 import InteractiveTerminalModal from './components/InteractiveTerminalModal';
