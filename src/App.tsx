@@ -24,6 +24,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white selection:bg-[#D2FF00] selection:text-black relative flex flex-col font-sans">
+      <CustomCursor />
       {/* Background Matrix Rain (Zero Impact, 60fps canvas) */}
       <BinaryRainCanvas />
 
