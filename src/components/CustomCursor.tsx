@@ -4,7 +4,7 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+useEffect(() => {
     // Отключаем на мобильных экранах и тач-устройствах
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -54,9 +54,13 @@ export default function CustomCursor() {
       if (ringRef.current) ringRef.current.style.opacity = '1';
     };
 
-    // Плавный цикл анимации (работает на видеокарте через GPU transform без перегрузки React)
+    // БЛОКИРУЕМ ПЕРЕТАСКИВАНИЕ КАРТИНОК БРАУЗЕРОМ (чтобы курсор не зависал)
+    const onDragStart = (e: DragEvent) => {
+      e.preventDefault();
+    };
+
+    // Плавный цикл анимации (GPU transform)
     const animate = () => {
-      // Плавное следование кольца за мышью (lerp)
       ringX += (mouseX - ringX) * 0.22;
       ringY += (mouseY - ringY) * 0.22;
 
@@ -78,6 +82,7 @@ export default function CustomCursor() {
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('mousedown', onMouseDown, { passive: true });
     window.addEventListener('mouseup', onMouseUp, { passive: true });
+    window.addEventListener('dragstart', onDragStart); // <--- перехват drag
     document.addEventListener('mouseleave', onMouseLeave);
     document.addEventListener('mouseenter', onMouseEnter);
 
@@ -88,11 +93,11 @@ export default function CustomCursor() {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('dragstart', onDragStart); // <--- удаление слушателя
       document.removeEventListener('mouseleave', onMouseLeave);
       document.removeEventListener('mouseenter', onMouseEnter);
     };
   }, []);
-
   return (
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden hidden md:block">
       {/* Внешнее кольцо-радар с плавным шлейфом */}
