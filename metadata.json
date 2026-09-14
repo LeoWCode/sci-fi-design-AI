@@ -1,0 +1,6 @@
+{
+  "name": "DIVE Sniper Terminal",
+  "description": "Cyber brutalist mempool sniper terminal and tax decay radar for Robinhood Pons v2.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
